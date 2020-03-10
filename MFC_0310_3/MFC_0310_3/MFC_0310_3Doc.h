@@ -1,23 +1,23 @@
 
-// MFC_0310_2Doc.h : CMFC_0310_2Doc 类的接口
+// MFC_0310_3Doc.h : CMFC_0310_3Doc 类的接口
 //
 
 
 #pragma once
 
 
-class CMFC_0310_2Doc : public CDocument
+class CMFC_0310_3Doc : public CDocument
 {
 protected: // 仅从序列化创建
-	CMFC_0310_2Doc();
-	DECLARE_DYNCREATE(CMFC_0310_2Doc)
+	CMFC_0310_3Doc();
+	DECLARE_DYNCREATE(CMFC_0310_3Doc)
 
 // 特性
 public:
 
 // 操作
 public:
-	CArray<CRect, CRect&> ca;
+
 // 重写
 public:
 	virtual BOOL OnNewDocument();
@@ -29,7 +29,7 @@ public:
 
 // 实现
 public:
-	virtual ~CMFC_0310_2Doc();
+	virtual ~CMFC_0310_3Doc();
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;

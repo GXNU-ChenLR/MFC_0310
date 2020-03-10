@@ -1,15 +1,15 @@
 
-// MFC_0310_2Doc.cpp : CMFC_0310_2Doc 类的实现
+// MFC_0310_3Doc.cpp : CMFC_0310_3Doc 类的实现
 //
 
 #include "stdafx.h"
 // SHARED_HANDLERS 可以在实现预览、缩略图和搜索筛选器句柄的
 // ATL 项目中进行定义，并允许与该项目共享文档代码。
 #ifndef SHARED_HANDLERS
-#include "MFC_0310_2.h"
+#include "MFC_0310_3.h"
 #endif
 
-#include "MFC_0310_2Doc.h"
+#include "MFC_0310_3Doc.h"
 
 #include <propkey.h>
 
@@ -17,27 +17,27 @@
 #define new DEBUG_NEW
 #endif
 
-// CMFC_0310_2Doc
+// CMFC_0310_3Doc
 
-IMPLEMENT_DYNCREATE(CMFC_0310_2Doc, CDocument)
+IMPLEMENT_DYNCREATE(CMFC_0310_3Doc, CDocument)
 
-BEGIN_MESSAGE_MAP(CMFC_0310_2Doc, CDocument)
+BEGIN_MESSAGE_MAP(CMFC_0310_3Doc, CDocument)
 END_MESSAGE_MAP()
 
 
-// CMFC_0310_2Doc 构造/析构
+// CMFC_0310_3Doc 构造/析构
 
-CMFC_0310_2Doc::CMFC_0310_2Doc()
+CMFC_0310_3Doc::CMFC_0310_3Doc()
 {
 	// TODO: 在此添加一次性构造代码
-	ca.SetSize(256);
+
 }
 
-CMFC_0310_2Doc::~CMFC_0310_2Doc()
+CMFC_0310_3Doc::~CMFC_0310_3Doc()
 {
 }
 
-BOOL CMFC_0310_2Doc::OnNewDocument()
+BOOL CMFC_0310_3Doc::OnNewDocument()
 {
 	if (!CDocument::OnNewDocument())
 		return FALSE;
@@ -51,9 +51,9 @@ BOOL CMFC_0310_2Doc::OnNewDocument()
 
 
 
-// CMFC_0310_2Doc 序列化
+// CMFC_0310_3Doc 序列化
 
-void CMFC_0310_2Doc::Serialize(CArchive& ar)
+void CMFC_0310_3Doc::Serialize(CArchive& ar)
 {
 	if (ar.IsStoring())
 	{
@@ -68,7 +68,7 @@ void CMFC_0310_2Doc::Serialize(CArchive& ar)
 #ifdef SHARED_HANDLERS
 
 // 缩略图的支持
-void CMFC_0310_2Doc::OnDrawThumbnail(CDC& dc, LPRECT lprcBounds)
+void CMFC_0310_3Doc::OnDrawThumbnail(CDC& dc, LPRECT lprcBounds)
 {
 	// 修改此代码以绘制文档数据
 	dc.FillSolidRect(lprcBounds, RGB(255, 255, 255));
@@ -89,7 +89,7 @@ void CMFC_0310_2Doc::OnDrawThumbnail(CDC& dc, LPRECT lprcBounds)
 }
 
 // 搜索处理程序的支持
-void CMFC_0310_2Doc::InitializeSearchContent()
+void CMFC_0310_3Doc::InitializeSearchContent()
 {
 	CString strSearchContent;
 	// 从文档数据设置搜索内容。
@@ -99,7 +99,7 @@ void CMFC_0310_2Doc::InitializeSearchContent()
 	SetSearchContent(strSearchContent);
 }
 
-void CMFC_0310_2Doc::SetSearchContent(const CString& value)
+void CMFC_0310_3Doc::SetSearchContent(const CString& value)
 {
 	if (value.IsEmpty())
 	{
@@ -119,19 +119,19 @@ void CMFC_0310_2Doc::SetSearchContent(const CString& value)
 
 #endif // SHARED_HANDLERS
 
-// CMFC_0310_2Doc 诊断
+// CMFC_0310_3Doc 诊断
 
 #ifdef _DEBUG
-void CMFC_0310_2Doc::AssertValid() const
+void CMFC_0310_3Doc::AssertValid() const
 {
 	CDocument::AssertValid();
 }
 
-void CMFC_0310_2Doc::Dump(CDumpContext& dc) const
+void CMFC_0310_3Doc::Dump(CDumpContext& dc) const
 {
 	CDocument::Dump(dc);
 }
 #endif //_DEBUG
 
 
-// CMFC_0310_2Doc 命令
+// CMFC_0310_3Doc 命令

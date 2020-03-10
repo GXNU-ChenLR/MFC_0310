@@ -22,6 +22,7 @@
 IMPLEMENT_DYNCREATE(CMFC_0310_2View, CView)
 
 BEGIN_MESSAGE_MAP(CMFC_0310_2View, CView)
+	ON_WM_LBUTTONDOWN()
 END_MESSAGE_MAP()
 
 // CMFC_0310_2View 构造/析构
@@ -29,7 +30,7 @@ END_MESSAGE_MAP()
 CMFC_0310_2View::CMFC_0310_2View()
 {
 	// TODO: 在此处添加构造代码
-
+	
 }
 
 CMFC_0310_2View::~CMFC_0310_2View()
@@ -46,12 +47,15 @@ BOOL CMFC_0310_2View::PreCreateWindow(CREATESTRUCT& cs)
 
 // CMFC_0310_2View 绘制
 
-void CMFC_0310_2View::OnDraw(CDC* /*pDC*/)
+void CMFC_0310_2View::OnDraw(CDC* pDC)
 {
 	CMFC_0310_2Doc* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);
 	if (!pDoc)
 		return;
+
+	for (int i = 0; i < pDoc->ca.GetSize(); i++)
+		pDC->Ellipse(pDoc->ca[i]);
 
 	// TODO: 在此处为本机数据添加绘制代码
 }
@@ -79,3 +83,22 @@ CMFC_0310_2Doc* CMFC_0310_2View::GetDocument() const // 非调试版本是内联的
 
 
 // CMFC_0310_2View 消息处理程序
+
+
+void CMFC_0310_2View::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	CMFC_0310_2Doc* pDoc = GetDocument();
+
+	int r = rand() % 50 + 5;
+	int t = rand() % 30 + 5;
+	
+	CRect cr(point.x - r, point.y - t, point.x + r, point.y + t);
+
+	pDoc->ca.Add(cr);
+	this->Invalidate();
+
+    //CClientDC dc(this);
+	//dc.Ellipse(cr);
+	CView::OnLButtonDown(nFlags, point);
+}
