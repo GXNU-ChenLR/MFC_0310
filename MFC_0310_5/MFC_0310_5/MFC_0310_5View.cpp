@@ -54,9 +54,19 @@ void CMFC_0310_5View::OnDraw(CDC* /*pDC*/)
 	if (!pDoc)
 		return;
 	CClientDC dc(this);
+
+	CString AA = _T("A");
+	CString BB = _T("B");
+	CString CC = _T("C");
+
 	dc.Rectangle(pDoc->A);
+	dc.TextOutW(150, 250, AA);
+
 	dc.Rectangle(pDoc->B);
+	dc.TextOutW(350, 250, BB);
+
 	dc.Rectangle(pDoc->C);
+	dc.TextOutW(550, 250, CC);
 	// TODO: 在此处为本机数据添加绘制代码
 }
 
@@ -92,19 +102,25 @@ void CMFC_0310_5View::OnLButtonDown(UINT nFlags, CPoint point)
 	ASSERT_VALID(pDoc);
 	if (!pDoc)
 		return;
-	int sum = pDoc->a + pDoc->b;
-	CString s,aa, bb,ss;
+	//pDoc->a = rand() % 30;
+	//pDoc->b = rand() % 30;
+
+	CString s,aa,bb,ss;
 	s = _T("点击无效");
 	aa.Format(_T("%d"), pDoc->a);
 	bb.Format(_T("%d"), pDoc->b);
-	ss.Format(_T("%d"), sum);
+	ss.Format(_T("%d"), pDoc->a + pDoc->b);
 	CClientDC dc(this);
-	if (point.x > pDoc->A.left&&point.x > pDoc->A.top && point.y < pDoc->A.bottom&&point.y < pDoc->A.right)
+	
+	if(pDoc->A.PtInRect(point))
 		dc.TextOutW(110, 120, aa);
-	else if (point.x > pDoc->B.left&&point.x > pDoc->B.top && point.y < pDoc->B.bottom&&point.y < pDoc->B.right)
-		dc.TextOutW(310, 320, bb);
-	else if (point.x > pDoc->C.left&&point.x > pDoc->C.top && point.y < pDoc->C.bottom&&point.y < pDoc->C.right)
-		dc.TextOutW(610, 620, ss);
+
+	else if (pDoc->B.PtInRect(point))
+		dc.TextOutW(310, 120, bb);
+
+	else if (pDoc->C.PtInRect(point))
+		dc.TextOutW(510, 120, ss);
+
 	else dc.TextOutW(180, 50, s);
 
 	CView::OnLButtonDown(nFlags, point);

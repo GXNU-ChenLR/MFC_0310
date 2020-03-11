@@ -30,9 +30,10 @@ END_MESSAGE_MAP()
 CMFC_0310_5Doc::CMFC_0310_5Doc()
 {
 	// TODO: 在此添加一次性构造代码
+	a = rand()%30; b = rand()%30;
 	A.SetRect(100, 100, 200, 300);
-	B.SetRect(300, 300, 500, 500);
-	C.SetRect(600, 600, 700, 700);
+	B.SetRect(300, 100, 400, 300);
+	C.SetRect(500, 100, 600, 300);
 }
 
 CMFC_0310_5Doc::~CMFC_0310_5Doc()
